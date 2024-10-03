@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نموذج تذكرة طيران</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('https://example.com/airplane-background.jpg'); /* قم بتغيير الرابط لصورة الخلفية المناسبة */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            max-width: 150px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #007BFF;
+        }
+
+        label {
+            font-size: 14px;
+            margin-top: 10px;
+            display: block;
+            color: #333;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- قسم الشعار -->
+        <div class="logo">
+            <img src="https://example.com/logo.png" alt="شعار الشركة"> <!-- قم بتغيير الرابط لصورة الشعار -->
+        </div>
+
+        <h1>حجز تذكرة طيران</h1>
+
+        <label for="fullName">اسم الضيف</label>
+        <input type="text" id="fullName" name="fullName" placeholder="أدخل اسمك الكامل">
+
+        <label for="reservationDate">ميعاد الحجز</label>
+        <input type="date" id="reservationDate" name="reservationDate">
+
+        <h2>بيانات الرحلة</h2>
+
+        <label for="from">من</label>
+        <input type="text" id="from" name="from" placeholder="محطة المغادرة">
+
+        <label for="to">إلى</label>
+        <input type="text" id="to" name="to" placeholder="محطة الوصول">
+
+        <label for="flightNumber">رقم الرحلة</label>
+        <input type="text" id="flightNumber" name="flightNumber" placeholder="أدخل رقم الرحلة">
+
+        <label for="seatClass">درجة المقعد</label>
+        <select id="seatClass" name="seatClass">
+            <option value="economy">اقتصادي</option>
+            <option value="premium">اقتصادي مميز</option>
+            <option value="business">درجة الأعمال</option>
+            <option value="first">الدرجة الأولى</option>
+        </select>
+
+        <label for="seatNumber">رقم المقعد</label>
+        <input type="text" id="seatNumber" name="seatNumber" placeholder="أدخل رقم المقعد">
+
+        <button type="submit">إرسال</button>
+    </div>
+</body>
+</html>

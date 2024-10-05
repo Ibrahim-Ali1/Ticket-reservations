@@ -28,6 +28,13 @@
             padding: 8px;
             width: 100%;
         }
+        .row {
+            display: flex;
+            gap: 10px; /* فراغ بين الحقول */
+        }
+        .row .column {
+            flex: 1; /* توزيع الحقول بالتساوي */
+        }
         .section-title {
             font-size: 1.2em;
             margin-top: 20px;
@@ -112,14 +119,29 @@
             <!-- بيانات الراكب -->
             <div class="section-title" data-ar="بيانات الراكب" data-en="Passenger Information">بيانات الراكب</div>
 
-            <label for="first-name" data-ar="الاسم الأول" data-en="First Name">الاسم الأول</label>
-            <input type="text" id="first-name" name="first-name" required>
-
-            <label for="middle-name" data-ar="الاسم الأوسط" data-en="Middle Name">الاسم الأوسط</label>
-            <input type="text" id="middle-name" name="middle-name">
-
-            <label for="last-name" data-ar="الاسم الأخير" data-en="Last Name">الاسم الأخير</label>
-            <input type="text" id="last-name" name="last-name" required>
+            <div class="row">
+                <div class="column">
+                    <label for="prefix" data-ar="اللقب" data-en="Title">اللقب</label>
+                    <select id="prefix" name="prefix" required>
+                        <option value="Mr">Mr</option>
+                        <option value="Mrs">Mrs</option>
+                        <option value="Miss">Miss</option>
+                        <option value="Mstr">Mstr</option>
+                    </select>
+                </div>
+                <div class="column">
+                    <label for="first-name" data-ar="الاسم الأول" data-en="First Name">الاسم الأول</label>
+                    <input type="text" id="first-name" name="first-name" required>
+                </div>
+                <div class="column">
+                    <label for="middle-name" data-ar="الاسم الأوسط" data-en="Middle Name">الاسم الأوسط</label>
+                    <input type="text" id="middle-name" name="middle-name">
+                </div>
+                <div class="column">
+                    <label for="last-name" data-ar="الاسم الأخير" data-en="Last Name">الاسم الأخير</label>
+                    <input type="text" id="last-name" name="last-name" required>
+                </div>
+            </div>
 
             <label for="booking-date" data-ar="ميعاد الحجز" data-en="Booking Date">ميعاد الحجز</label>
             <input type="date" id="booking-date" name="booking-date" required>
@@ -127,11 +149,20 @@
             <!-- تفاصيل الرحلة -->
             <div class="section-title" data-ar="تفاصيل الرحلة" data-en="Flight Details">تفاصيل الرحلة</div>
 
-            <label for="from" data-ar="من" data-en="From">من</label>
-            <input type="text" id="from" name="from" required>
-
-            <label for="to" data-ar="إلى" data-en="To">إلى</label>
-            <input type="text" id="to" name="to" required>
+            <div class="row">
+                <div class="column">
+                    <label for="from" data-ar="من" data-en="From">من</label>
+                    <input type="text" id="from" name="from" required>
+                </div>
+                <div class="column">
+                    <label for="to" data-ar="إلى" data-en="To">إلى</label>
+                    <input type="text" id="to" name="to" required>
+                </div>
+                <div class="column">
+                    <label for="airline" data-ar="الطيران" data-en="Airline">الطيران</label>
+                    <input type="text" id="airline" name="airline" required>
+                </div>
+            </div>
 
             <label for="flight-number" data-ar="رقم الرحلة" data-en="Flight Number">رقم الرحلة</label>
             <input type="text" id="flight-number" name="flight-number" required>
@@ -168,7 +199,7 @@
                 <option value="yes" data-ar="نعم" data-en="Yes">نعم</option>
             </select>
 
-            <p data-ar="يتم توفير 25 كيلو لكل راكب. يمكنك شراء المزيد مقابل 10 دولارات لكل كيلو" data-en="25kg is provided for each passenger. Additional weight can be purchased at $10 per kg">يتم توفير 25 كيلو لكل راكب. يمكنك شراء المزيد مقابل 10 دولارات لكل كيلو</p>
+            <p data-ar="يتم توفير 25 كيلو لكل راكب. يمكنك شراء المزيد مقابل 10 دولارات لكل كيلو" data-en="25kg is provided for each passenger. Additional weight can be purchased at $10 per kg">يتم توفير 25 كيلو لكل راكب. يمكنك شراء المزيد
 
             <!-- تفاصيل السعر -->
             <div class="section-title" data-ar="تفاصيل السعر" data-en="Price Details">تفاصيل السعر</div>

@@ -3,113 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>حجز تذكرة طيران</title>
+    <title>شراء تذكرة طيران</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-image: url('https://assets.onecompiler.app/42tz559fa/42tz5cdy3/Screenshot%202024-10-03%20101241.png'); /* قم بتغيير الرابط لصورة الخلفية المناسبة */
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            text-align: right;
+            margin: 20px;
+            background-image: url('background.jpg'); /* تغيير الرابط لصورة الخلفية المطلوبة */
             background-size: cover;
             background-position: center;
         }
-
         .container {
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.9); /* خلفية شفافة للنموذج */
             padding: 20px;
             border-radius: 10px;
-            width: 80%;
-            max-width: 600px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: auto;
         }
-
-        .logo {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .logo img {
-            max-width: 150px;
-        }
-
-        h1 {
-            text-align: center;
-            color: #007BFF;
-        }
-
         label {
-            font-size: 14px;
-            margin-top: 10px;
             display: block;
+            margin-bottom: 8px;
+        }
+        input, select {
+            margin-bottom: 15px;
+            padding: 8px;
+            width: 100%;
+        }
+        .section-title {
+            font-size: 1.2em;
+            margin-top: 20px;
+            margin-bottom: 10px;
             color: #333;
         }
-
-        input, select {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-bottom: 15px;
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #007BFF;
+        .submit-btn {
+            background-color: #4CAF50;
             color: white;
             border: none;
-            border-radius: 5px;
+            padding: 10px 20px;
             cursor: pointer;
         }
-
-        button:hover {
-            background-color: #0056b3;
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .header img {
+            max-width: 150px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2em;
+            color: #333;
         }
     </style>
 </head>
 <body>
+
     <div class="container">
-        <!-- قسم الشعار -->
-        <div class="logo">
-            <img src="https://assets.onecompiler.app/42tz559fa/42tz5cdy3/Screenshot%202024-10-03%20101241.png" alt="شعار الشركة"> <!-- قم بتغيير الرابط لصورة الشعار -->
+
+        <!-- شعار الشركة -->
+        <div class="header">
+            <img src="logo.png" alt="شعار الشركة"> <!-- استبدال logo.png برابط الشعار المطلوب -->
+            <h1>اسم الشركة</h1> <!-- هنا ضع اسم شركتك -->
         </div>
 
-        <h1>حجز تذكرة طيران</h1>
+        <h2>شراء تذكرة طيران</h2>
 
-        <label for="fullName">اسم المسافر</label>
-        <input type="text" id="fullName" name="fullName" placeholder="أدخل اسمك الكامل">
+        <form>
 
-        <label for="reservationDate">ميعاد الحجز</label>
-        <input type="date" id="reservationDate" name="reservationDate">
+            <!-- بيانات الراكب -->
+            <div class="section-title">بيانات الراكب</div>
 
-        <h2>بيانات الرحلة</h2>
+            <label for="first-name">الاسم الأول</label>
+            <input type="text" id="first-name" name="first-name" required>
 
-        <label for="from">من</label>
-        <input type="text" id="from" name="from" placeholder="محطة المغادرة">
+            <label for="middle-name">الاسم الأوسط</label>
+            <input type="text" id="middle-name" name="middle-name">
 
-        <label for="to">إلى</label>
-        <input type="text" id="to" name="to" placeholder="محطة الوصول">
+            <label for="last-name">الاسم الأخير</label>
+            <input type="text" id="last-name" name="last-name" required>
 
-        <label for="flightNumber">رقم الرحلة</label>
-        <input type="text" id="flightNumber" name="flightNumber" placeholder="أدخل رقم الرحلة">
+            <label for="booking-date">ميعاد الحجز</label>
+            <input type="date" id="booking-date" name="booking-date" required>
 
-        <label for="seatClass">درجة المقعد</label>
-        <select id="seatClass" name="seatClass">
-            <option value="economy">اقتصادي</option>
-            <option value="premium">اقتصادي مميز</option>
-            <option value="business">درجة الأعمال</option>
-            <option value="first">الدرجة الأولى</option>
-        </select>
+            <!-- تفاصيل الرحلة -->
+            <div class="section-title">تفاصيل الرحلة</div>
 
-        <label for="seatNumber">رقم المقعد</label>
-        <input type="text" id="seatNumber" name="seatNumber" placeholder="أدخل رقم المقعد">
+            <label for="from">من</label>
+            <input type="text" id="from" name="from" required>
 
-        <button type="submit">إرسال</button>
+            <label for="to">إلى</label>
+            <input type="text" id="to" name="to" required>
+
+            <label for="flight-number">رقم الرحلة</label>
+            <input type="text" id="flight-number" name="flight-number" required>
+
+            <label for="travel-date">تاريخ السفر</label>
+            <input type="date" id="travel-date" name="travel-date" required>
+
+            <label for="departure-time">موعد المغادرة</label>
+            <input type="time" id="departure-time" name="departure-time" required>
+
+            <label for="arrival-time">موعد الوصول</label>
+            <input type="time" id="arrival-time" name="arrival-time" required>
+
+            <!-- معلومات المقعد -->
+            <div class="section-title">معلومات المقعد</div>
+
+            <label for="seat-class">درجة المقعد</label>
+            <select id="seat-class" name="seat-class" required>
+                <option value="">الرجاء التحديد</option>
+                <option value="economy">اقتصادي</option>
+                <option value="business">رجال الأعمال</option>
+                <option value="first-class">الدرجة الأولى</option>
+            </select>
+
+            <label for="seat-number">رقم المقعد</label>
+            <input type="text" id="seat-number" name="seat-number">
+
+            <!-- وزن الأمتعة -->
+            <div class="section-title">الأمتعة</div>
+
+            <label for="extra-baggage">شراء وزن أمتعة إضافي</label>
+            <select id="extra-baggage" name="extra-baggage">
+                <option value="no">لا</option>
+                <option value="yes">نعم</option>
+            </select>
+
+            <p>يتم توفير 25 كيلو لكل راكب. يمكنك شراء المزيد مقابل 10 دولارات لكل كيلو</p>
+
+            <!-- تفاصيل السعر -->
+            <div class="section-title">تفاصيل السعر</div>
+
+            <label for="base-price">السعر الأساسي</label>
+            <input type="number" id="base-price" name="base-price" required>
+
+            <label for="additional-fee">رسم إضافي</label>
+            <input type="number" id="additional-fee" name="additional-fee">
+
+            <label for="fuel-fee">رسوم الوقود / التأمين</label>
+            <input type="number" id="fuel-fee" name="fuel-fee">
+
+            <label for="service-fee">رسوم خدمة الركاب</label>
+            <input type="number" id="service-fee" name="service-fee">
+
+            <label for="ticket-fee">رسوم خدمة التذاكر</label>
+            <input type="number" id="ticket-fee" name="ticket-fee">
+
+            <label for="total-amount">المبلغ الإجمالي</label>
+            <input type="number" id="total-amount" name="total-amount" required>
+
+            <!-- زر الإرسال -->
+            <button type="submit" class="submit-btn">إرسال</button>
+
+        </form>
     </div>
+
 </body>
 </html>

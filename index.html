@@ -3,12 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>شراء تذكرة طيران</title>
+    <title>شراء تذكرة طيران / Flight Ticket Purchase</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            direction: rtl;
-            text-align: right;
             margin: 20px;
             background-image: url('background.jpg'); /* تغيير الرابط لصورة الخلفية المطلوبة */
             background-size: cover;
@@ -58,106 +56,143 @@
             font-size: 2em;
             color: #333;
         }
+        .language-switcher {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        .language-switcher button {
+            padding: 10px;
+            cursor: pointer;
+            background-color: #333;
+            color: white;
+            border: none;
+            margin: 5px;
+        }
+        .language-switcher button:hover {
+            background-color: #555;
+        }
     </style>
+    <script>
+        function switchLanguage(language) {
+            const elements = document.querySelectorAll("[data-ar], [data-en]");
+            elements.forEach(element => {
+                if (language === 'ar') {
+                    element.textContent = element.getAttribute('data-ar');
+                    document.body.style.direction = 'rtl';
+                    document.body.style.textAlign = 'right';
+                } else {
+                    element.textContent = element.getAttribute('data-en');
+                    document.body.style.direction = 'ltr';
+                    document.body.style.textAlign = 'left';
+                }
+            });
+        }
+    </script>
 </head>
 <body>
 
     <div class="container">
 
-        <!-- شعار الشركة -->
-        <div class="header">
-            <img src="logo.png" alt="شعار الشركة"> <!-- استبدال logo.png برابط الشعار المطلوب -->
-            <h1>اسم الشركة</h1> <!-- هنا ضع اسم شركتك -->
+        <!-- تبديل اللغة -->
+        <div class="language-switcher">
+            <button onclick="switchLanguage('ar')">العربية</button>
+            <button onclick="switchLanguage('en')">English</button>
         </div>
 
-        <h2>شراء تذكرة طيران</h2>
+        <!-- شعار الشركة -->
+        <div class="header">
+            <img src="logo.png" alt="Company Logo">
+            <h1 data-ar="اسم الشركة" data-en="Company Name">اسم الشركة</h1>
+        </div>
+
+        <h2 data-ar="شراء تذكرة طيران" data-en="Flight Ticket Purchase">شراء تذكرة طيران</h2>
 
         <form>
 
             <!-- بيانات الراكب -->
-            <div class="section-title">بيانات الراكب</div>
+            <div class="section-title" data-ar="بيانات الراكب" data-en="Passenger Information">بيانات الراكب</div>
 
-            <label for="first-name">الاسم الأول</label>
+            <label for="first-name" data-ar="الاسم الأول" data-en="First Name">الاسم الأول</label>
             <input type="text" id="first-name" name="first-name" required>
 
-            <label for="middle-name">الاسم الأوسط</label>
+            <label for="middle-name" data-ar="الاسم الأوسط" data-en="Middle Name">الاسم الأوسط</label>
             <input type="text" id="middle-name" name="middle-name">
 
-            <label for="last-name">الاسم الأخير</label>
+            <label for="last-name" data-ar="الاسم الأخير" data-en="Last Name">الاسم الأخير</label>
             <input type="text" id="last-name" name="last-name" required>
 
-            <label for="booking-date">ميعاد الحجز</label>
+            <label for="booking-date" data-ar="ميعاد الحجز" data-en="Booking Date">ميعاد الحجز</label>
             <input type="date" id="booking-date" name="booking-date" required>
 
             <!-- تفاصيل الرحلة -->
-            <div class="section-title">تفاصيل الرحلة</div>
+            <div class="section-title" data-ar="تفاصيل الرحلة" data-en="Flight Details">تفاصيل الرحلة</div>
 
-            <label for="from">من</label>
+            <label for="from" data-ar="من" data-en="From">من</label>
             <input type="text" id="from" name="from" required>
 
-            <label for="to">إلى</label>
+            <label for="to" data-ar="إلى" data-en="To">إلى</label>
             <input type="text" id="to" name="to" required>
 
-            <label for="flight-number">رقم الرحلة</label>
+            <label for="flight-number" data-ar="رقم الرحلة" data-en="Flight Number">رقم الرحلة</label>
             <input type="text" id="flight-number" name="flight-number" required>
 
-            <label for="travel-date">تاريخ السفر</label>
+            <label for="travel-date" data-ar="تاريخ السفر" data-en="Travel Date">تاريخ السفر</label>
             <input type="date" id="travel-date" name="travel-date" required>
 
-            <label for="departure-time">موعد المغادرة</label>
+            <label for="departure-time" data-ar="موعد المغادرة" data-en="Departure Time">موعد المغادرة</label>
             <input type="time" id="departure-time" name="departure-time" required>
 
-            <label for="arrival-time">موعد الوصول</label>
+            <label for="arrival-time" data-ar="موعد الوصول" data-en="Arrival Time">موعد الوصول</label>
             <input type="time" id="arrival-time" name="arrival-time" required>
 
             <!-- معلومات المقعد -->
-            <div class="section-title">معلومات المقعد</div>
+            <div class="section-title" data-ar="معلومات المقعد" data-en="Seat Information">معلومات المقعد</div>
 
-            <label for="seat-class">درجة المقعد</label>
+            <label for="seat-class" data-ar="درجة المقعد" data-en="Seat Class">درجة المقعد</label>
             <select id="seat-class" name="seat-class" required>
-                <option value="">الرجاء التحديد</option>
-                <option value="economy">اقتصادي</option>
-                <option value="business">رجال الأعمال</option>
-                <option value="first-class">الدرجة الأولى</option>
+                <option value="" data-ar="الرجاء التحديد" data-en="Please Select">الرجاء التحديد</option>
+                <option value="economy" data-ar="اقتصادي" data-en="Economy">اقتصادي</option>
+                <option value="business" data-ar="رجال الأعمال" data-en="Business">رجال الأعمال</option>
+                <option value="first-class" data-ar="الدرجة الأولى" data-en="First Class">الدرجة الأولى</option>
             </select>
 
-            <label for="seat-number">رقم المقعد</label>
+            <label for="seat-number" data-ar="رقم المقعد" data-en="Seat Number">رقم المقعد</label>
             <input type="text" id="seat-number" name="seat-number">
 
             <!-- وزن الأمتعة -->
-            <div class="section-title">الأمتعة</div>
+            <div class="section-title" data-ar="الأمتعة" data-en="Baggage">الأمتعة</div>
 
-            <label for="extra-baggage">شراء وزن أمتعة إضافي</label>
+            <label for="extra-baggage" data-ar="شراء وزن أمتعة إضافي" data-en="Extra Baggage Purchase">شراء وزن أمتعة إضافي</label>
             <select id="extra-baggage" name="extra-baggage">
-                <option value="no">لا</option>
-                <option value="yes">نعم</option>
+                <option value="no" data-ar="لا" data-en="No">لا</option>
+                <option value="yes" data-ar="نعم" data-en="Yes">نعم</option>
             </select>
 
-            <p>يتم توفير 25 كيلو لكل راكب. يمكنك شراء المزيد مقابل 10 دولارات لكل كيلو</p>
+            <p data-ar="يتم توفير 25 كيلو لكل راكب. يمكنك شراء المزيد مقابل 10 دولارات لكل كيلو" data-en="25kg is provided for each passenger. Additional weight can be purchased at $10 per kg">يتم توفير 25 كيلو لكل راكب. يمكنك شراء المزيد مقابل 10 دولارات لكل كيلو</p>
 
             <!-- تفاصيل السعر -->
-            <div class="section-title">تفاصيل السعر</div>
+            <div class="section-title" data-ar="تفاصيل السعر" data-en="Price Details">تفاصيل السعر</div>
 
-            <label for="base-price">السعر الأساسي</label>
+            <label for="base-price" data-ar="السعر الأساسي" data-en="Base Fare">السعر الأساسي</label>
             <input type="number" id="base-price" name="base-price" required>
 
-            <label for="additional-fee">رسم إضافي</label>
+            <label for="additional-fee" data-ar="رسم إضافي" data-en="Additional Fee">رسم إضافي</label>
             <input type="number" id="additional-fee" name="additional-fee">
 
-            <label for="fuel-fee">رسوم الوقود / التأمين</label>
+            <label for="fuel-fee" data-ar="رسوم الوقود / التأمين" data-en="Fuel / Insurance Fee">رسوم الوقود / التأمين</label>
             <input type="number" id="fuel-fee" name="fuel-fee">
 
-            <label for="service-fee">رسوم خدمة الركاب</label>
+            <label for="service-fee" data-ar="رسوم خدمة الركاب" data-en="Passenger Service Fee">رسوم خدمة الركاب</label>
             <input type="number" id="service-fee" name="service-fee">
 
-            <label for="ticket-fee">رسوم خدمة التذاكر</label>
+            <label for="ticket-fee" data-ar="رسوم خدمة التذاكر" data-en="Ticket Service Fee">رسوم خدمة التذاكر</label>
             <input type="number" id="ticket-fee" name="ticket-fee">
 
-            <label for="total-amount">المبلغ الإجمالي</label>
+            <label for="total-amount" data-ar="المبلغ الإجمالي" data-en="Total Amount">المبلغ الإجمالي</label>
             <input type="number" id="total-amount" name="total-amount" required>
 
             <!-- زر الإرسال -->
-            <button type="submit" class="submit-btn">إرسال</button>
+            <button type="submit" class="submit-btn" data-ar="إرسال" data-en="Submit">إرسال</button>
 
         </form>
     </div>

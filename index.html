@@ -22,6 +22,7 @@
             flex-direction: column;
             justify-content: space-between;
             min-height: 100vh; /* لملء الصفحة بالكامل */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* إضافة ظل للخلفية */
         }
         label {
             display: block;
@@ -36,6 +37,7 @@
             margin-bottom: 15px;
             padding: 8px;
             width: 100%;
+            box-sizing: border-box; /* لضمان تضمين padding في العرض */
         }
         .section-title {
             font-size: 1.2em;
@@ -50,6 +52,7 @@
             border: none;
             padding: 10px 20px;
             cursor: pointer;
+            width: 100%; /* زر الإرسال يأخذ عرض كامل */
         }
         .submit-btn:hover {
             background-color: #45a049;
@@ -60,6 +63,8 @@
         }
         .header img {
             max-width: 150px;
+            width: 100%; /* يجعل الشعار يتناسب مع عرض الجهاز */
+            height: auto; /* يحافظ على نسبة الطول إلى العرض */
         }
         .header h1 {
             margin: 0;
@@ -81,25 +86,6 @@
         .language-switcher button:hover {
             background-color: #555;
         }
-        /* لتوسيط زر الإرسال في الأسفل */
-        .submit-container {
-            display: flex;
-            justify-content: center; /* توسيط أفقي */
-            margin-top: auto; /* لضمان وجوده في الأسفل */
-        }
-        /* تنسيق الحقول لجعلها في صف واحد */
-        .row {
-            display: flex;
-            justify-content: space-between; /* توزيع الأعمدة بالتساوي */
-            gap: 10px; /* فراغ بين الأعمدة */
-        }
-        .row .column {
-            flex: 1;
-            margin-right: 10px; /* إضافة فراغ بين الحقول */
-        }
-        .row .column:last-child {
-            margin-right: 0; /* إزالة الفراغ عن آخر عنصر */
-        }
         /* لتوسيع العنوان فوق مربعات الأسماء */
         .names-header {
             text-align: center;
@@ -107,6 +93,20 @@
             font-size: 1.5em;
             font-weight: bold;
             color: #333;
+        }
+
+        /* التصميم المتجاوب */
+        @media (max-width: 600px) {
+            .row {
+                flex-direction: column; /* عرض الحقول في عمود واحد على الشاشات الصغيرة */
+            }
+            .row .column {
+                margin-right: 0; /* إزالة الفراغ عن الأعمدة */
+                margin-bottom: 10px; /* إضافة مسافة بين الحقول */
+            }
+            .names-header, .section-title {
+                font-size: 1.2em; /* تصغير حجم الخط للعناوين على الشاشات الصغيرة */
+            }
         }
     </style>
     <script>

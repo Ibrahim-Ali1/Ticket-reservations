@@ -38,6 +38,7 @@
             padding: 8px;
             width: 100%;
             box-sizing: border-box; /* لضمان تضمين padding في العرض */
+            text-align: center;
         }
         .section-title {
             font-size: 1.2em;
@@ -107,6 +108,13 @@
             .names-header, .section-title {
                 font-size: 1.2em; /* تصغير حجم الخط للعناوين على الشاشات الصغيرة */
             }
+        }
+
+        /* تصميم خاص لصف اللقب والاسماء */
+        .row {
+            display: flex; /* استخدام الفليكس لتوزيع العناصر في صف واحد */
+            justify-content: space-between; /* توزيع الأعمدة بالتساوي */
+            gap: 10px; /* إضافة فراغ بين الأعمدة */
         }
     </style>
     <script>
@@ -212,7 +220,7 @@
             <label for="arrival-time" data-ar="موعد الوصول" data-en="Arrival Time">موعد الوصول</label>
             <input type="time" id="arrival-time" name="arrival-time" required>
 
-            <!-- بيانات الأمتعة في سطر واحد مع التوسيط -->
+            <!-- بيانات الأمتعة في سطر واحد مع التوسيع -->
             <div class="section-title" data-ar="الأمتعة" data-en="Baggage">الأمتعة</div>
 
             <div class="row">

@@ -30,6 +30,7 @@
         }
         .row {
             display: flex;
+            justify-content: center; /* توسيط الحقول */
             gap: 10px; /* فراغ بين الحقول */
         }
         .row .column {
@@ -40,6 +41,7 @@
             margin-top: 20px;
             margin-bottom: 10px;
             color: #333;
+            text-align: left; /* توسيط العنوان */
         }
         .submit-btn {
             background-color: #4CAF50;
@@ -149,6 +151,7 @@
             <!-- تفاصيل الرحلة -->
             <div class="section-title" data-ar="تفاصيل الرحلة" data-en="Flight Details">تفاصيل الرحلة</div>
 
+            <!-- من، إلى، الطيران، رقم الرحلة في سطر واحد -->
             <div class="row">
                 <div class="column">
                     <label for="from" data-ar="من" data-en="From">من</label>
@@ -162,10 +165,11 @@
                     <label for="airline" data-ar="الطيران" data-en="Airline">الطيران</label>
                     <input type="text" id="airline" name="airline" required>
                 </div>
+                <div class="column">
+                    <label for="flight-number" data-ar="رقم الرحلة" data-en="Flight Number">رقم الرحلة</label>
+                    <input type="text" id="flight-number" name="flight-number" required>
+                </div>
             </div>
-
-            <label for="flight-number" data-ar="رقم الرحلة" data-en="Flight Number">رقم الرحلة</label>
-            <input type="text" id="flight-number" name="flight-number" required>
 
             <label for="travel-date" data-ar="تاريخ السفر" data-en="Travel Date">تاريخ السفر</label>
             <input type="date" id="travel-date" name="travel-date" required>
@@ -176,30 +180,56 @@
             <label for="arrival-time" data-ar="موعد الوصول" data-en="Arrival Time">موعد الوصول</label>
             <input type="time" id="arrival-time" name="arrival-time" required>
 
+            <!-- بيانات الأمتعة في سطر واحد مع التوسيط -->
+            <div class="section-title" data-ar="الأمتعة" data-en="Baggage">الأمتعة</div>
+
+            <div class="row">
+                <div class="column">
+                    <label for="baggage-count" data-ar="عدد الأمتعة" data-en="Number of Baggage">عدد الأمتعة</label>
+                    <select id="baggage-count" name="baggage-count">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <div class="column">
+                    <label for="baggage-weight" data-ar="وزن الأمتعة" data-en="Baggage Weight">وزن الأمتعة</label>
+                    <select id="baggage-weight" name="baggage-weight">
+                        <option value="10">10 KG</option>
+                        <option value="15">15 KG</option>
+                        <option value="23">23 KG</option>
+                        <option value="30">30 KG</option>
+                    </select>
+                </div>
+                <div class="column">
+                    <label for="extra-baggage" data-ar="شراء وزن أمتعة إضافي" data-en="Extra Baggage Purchase">شراء وزن أمتعة إضافي</label>
+                    <select id="extra-baggage" name="extra-baggage">
+                        <option value="no" data-ar="لا" data-en="No">لا</option>
+                        <option value="yes" data-ar="نعم" data-en="Yes">نعم</option>
+                    </select>
+                </div>
+            </div>
+
             <!-- معلومات المقعد -->
             <div class="section-title" data-ar="معلومات المقعد" data-en="Seat Information">معلومات المقعد</div>
 
-            <label for="seat-class" data-ar="درجة المقعد" data-en="Seat Class">درجة المقعد</label>
-            <select id="seat-class" name="seat-class" required>
-                <option value="" data-ar="الرجاء التحديد" data-en="Please Select">الرجاء التحديد</option>
-                <option value="economy" data-ar="اقتصادي" data-en="Economy">اقتصادي</option>
-                <option value="business" data-ar="رجال الأعمال" data-en="Business">رجال الأعمال</option>
-                <option value="first-class" data-ar="الدرجة الأولى" data-en="First Class">الدرجة الأولى</option>
-            </select>
-
-            <label for="seat-number" data-ar="رقم المقعد" data-en="Seat Number">رقم المقعد</label>
-            <input type="text" id="seat-number" name="seat-number">
-
-            <!-- وزن الأمتعة -->
-            <div class="section-title" data-ar="الأمتعة" data-en="Baggage">الأمتعة</div>
-
-            <label for="extra-baggage" data-ar="شراء وزن أمتعة إضافي" data-en="Extra Baggage Purchase">شراء وزن أمتعة إضافي</label>
-            <select id="extra-baggage" name="extra-baggage">
-                <option value="no" data-ar="لا" data-en="No">لا</option>
-                <option value="yes" data-ar="نعم" data-en="Yes">نعم</option>
-            </select>
-
-            <p data-ar="يتم توفير 25 كيلو لكل راكب. يمكنك شراء المزيد مقابل 10 دولارات لكل كيلو" data-en="25kg is provided for each passenger. Additional weight can be purchased at $10 per kg">يتم توفير 25 كيلو لكل راكب. يمكنك شراء المزيد
+            <div class="row">
+                <div class="column">
+                    <label for="seat-class" data-ar="درجة المقعد" data-en="Seat Class">درجة المقعد</label>
+                    <select id="seat-class" name="seat-class" required>
+                        <option value="" data-ar="الرجاء التحديد" data-en="Please Select">الرجاء التحديد</option>
+                        <option value="economy" data-ar="اقتصادي" data-en="Economy">اقتصادي</option>
+                        <option value="business" data-ar="رجال الأعمال" data-en="Business">رجال الأعمال</option>
+                        <option value="first-class" data-ar="الدرجة الأولى" data-en="First Class">الدرجة الأولى</option>
+                    </select>
+                </div>
+                <div class="column">
+                    <label for="seat-number" data-ar="رقم المقعد" data-en="Seat Number">رقم المقعد</label>
+                    <input type="text" id="seat-number" name="seat-number">
+                </div>
+            </div>
 
             <!-- تفاصيل السعر -->
             <div class="section-title" data-ar="تفاصيل السعر" data-en="Price Details">تفاصيل السعر</div>

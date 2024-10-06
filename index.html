@@ -211,14 +211,47 @@
                 </div>
             </div>
 
-            <label for="travel-date" data-ar="تاريخ السفر" data-en="Travel Date">تاريخ السفر</label>
-            <input type="text" id="travel-date" name="travel-date" pattern="\d{2}/\d{2}/\d{4}" placeholder="dd/mm/yyyy" required>
+            <div class="row">
+                <div class="column">
+                    <label for="travel-date" data-ar="تاريخ السفر" data-en="Travel Date">تاريخ السفر</label>
+                    <input type="text" id="travel-date" name="travel-date" pattern="\d{2}/\d{2}/\d{4}" placeholder="dd/mm/yyyy" required>
+                </div>
+                <div class="column">
+                    <label for="day" class="center-label" data-ar="اليوم" data-en="Day">Day</label> <!-- تحديث هنا -->
+                    <select id="day" name="day" required>
+                        <option value="Saturday">Saturday</option>
+                        <option value="Sunday">Sunday</option>
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                    </select>
+                </div>
+            </div>
 
-            <label for="departure-time" data-ar="موعد المغادرة" data-en="Departure Time">موعد المغادرة</label>
-            <input type="time" id="departure-time" name="departure-time" required>
+            <div class="row">
+                <div class="column">
+                    <label for="departure-time" data-ar="موعد المغادرة" data-en="Departure Time">موعد المغادرة</label>
+                    <input type="time" id="departure-time" name="departure-time" required>
+                </div>
+                <div class="column">
+                    <label for="arrival-time" data-ar="موعد الوصول" data-en="Arrival Time">موعد الوصول</label>
+                    <input type="time" id="arrival-time" name="arrival-time" required>
+                </div>
+            </div>
 
-            <label for="arrival-time" data-ar="موعد الوصول" data-en="Arrival Time">موعد الوصول</label>
-            <input type="time" id="arrival-time" name="arrival-time" required>
+            <!-- خانة مرجع الحجز ورقم التذكرة -->
+            <div class="row">
+                <div class="column">
+                    <label for="booking-reference" data-ar="مرجع الحجز" data-en="Booking Reference">مرجع الحجز</label>
+                    <input type="text" id="booking-reference" name="booking-reference" required>
+                </div>
+                <div class="column">
+                    <label for="ticket-number" data-ar="رقم التذكرة" data-en="Ticket Number">رقم التذكرة</label>
+                    <input type="text" id="ticket-number" name="ticket-number" required>
+                </div>
+            </div>
 
             <!-- بيانات الأمتعة في سطر واحد مع التوسيع -->
             <div class="section-title" data-ar="الأمتعة" data-en="Baggage">الأمتعة</div>

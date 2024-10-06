@@ -18,24 +18,24 @@
             border-radius: 10px;
             max-width: 800px;
             margin: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 100vh; /* لملء الصفحة بالكامل */
         }
         label {
             display: block;
             margin-bottom: 8px;
             font-weight: bold;
         }
+        /* توسيط النص داخل label المحددة */
+        .center-label {
+            text-align: center; /* توسيط النص داخل الـ label */
+        }
         input, select {
             margin-bottom: 15px;
             padding: 8px;
             width: 100%;
-        }
-        .row {
-            display: flex;
-            justify-content: center; /* توسيط الحقول */
-            gap: 10px; /* فراغ بين الحقول */
-        }
-        .row .column {
-            flex: 1; /* توزيع الحقول بالتساوي */
         }
         .section-title {
             font-size: 1.2em;
@@ -81,6 +81,33 @@
         .language-switcher button:hover {
             background-color: #555;
         }
+        /* لتوسيط زر الإرسال في الأسفل */
+        .submit-container {
+            display: flex;
+            justify-content: center; /* توسيط أفقي */
+            margin-top: auto; /* لضمان وجوده في الأسفل */
+        }
+        /* تنسيق الحقول لجعلها في صف واحد */
+        .row {
+            display: flex;
+            justify-content: space-between; /* توزيع الأعمدة بالتساوي */
+            gap: 10px; /* فراغ بين الأعمدة */
+        }
+        .row .column {
+            flex: 1;
+            margin-right: 10px; /* إضافة فراغ بين الحقول */
+        }
+        .row .column:last-child {
+            margin-right: 0; /* إزالة الفراغ عن آخر عنصر */
+        }
+        /* لتوسيع العنوان فوق مربعات الأسماء */
+        .names-header {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+        }
     </style>
     <script>
         function switchLanguage(language) {
@@ -122,9 +149,13 @@
             <!-- بيانات الراكب -->
             <div class="section-title" data-ar="بيانات الراكب" data-en="Passenger Information">بيانات الراكب</div>
 
+            <!-- العنوان فوق حقول الأسماء -->
+            <div class="names-header" data-ar="الاسم الكامل" data-en="Full Name">الاسم الكامل</div>
+
+            <!-- اللقب، الاسم الأول، الأوسط، الأخير في صف واحد -->
             <div class="row">
                 <div class="column">
-                    <label for="prefix" data-ar="اللقب" data-en="Title">اللقب</label>
+                    <label class="center-label" for="prefix" data-ar="اللقب" data-en="Title">اللقب</label>
                     <select id="prefix" name="prefix" required>
                         <option value="Mr">Mr</option>
                         <option value="Mrs">Mrs</option>
@@ -133,47 +164,47 @@
                     </select>
                 </div>
                 <div class="column">
-                    <label for="first-name" data-ar="الاسم الأول" data-en="First Name">الاسم الأول</label>
+                    <label class="center-label" for="first-name" data-ar="الاسم الأول" data-en="First Name">الاسم الأول</label>
                     <input type="text" id="first-name" name="first-name" required>
                 </div>
                 <div class="column">
-                    <label for="middle-name" data-ar="الاسم الأوسط" data-en="Middle Name">الاسم الأوسط</label>
+                    <label class="center-label" for="middle-name" data-ar="الاسم الأوسط" data-en="Middle Name">الاسم الأوسط</label>
                     <input type="text" id="middle-name" name="middle-name">
                 </div>
                 <div class="column">
-                    <label for="last-name" data-ar="الاسم الأخير" data-en="Last Name">الاسم الأخير</label>
+                    <label class="center-label" for="last-name" data-ar="الاسم الأخير" data-en="Last Name">الاسم الأخير</label>
                     <input type="text" id="last-name" name="last-name" required>
                 </div>
             </div>
 
             <label for="booking-date" data-ar="ميعاد الحجز" data-en="Booking Date">ميعاد الحجز</label>
-            <input type="date" id="booking-date" name="booking-date" required>
+            <input type="text" id="booking-date" name="booking-date" pattern="\d{2}/\d{2}/\d{4}" placeholder="dd/mm/yyyy" required>
 
             <!-- تفاصيل الرحلة -->
             <div class="section-title" data-ar="تفاصيل الرحلة" data-en="Flight Details">تفاصيل الرحلة</div>
 
-            <!-- من، إلى، الطيران، رقم الرحلة في سطر واحد -->
+            <!-- من، إلى، الطيران، رقم الرحلة في صف واحد -->
             <div class="row">
                 <div class="column">
-                    <label for="from" data-ar="من" data-en="From">من</label>
+                    <label class="center-label" for="from" data-ar="من" data-en="From">من</label>
                     <input type="text" id="from" name="from" required>
                 </div>
                 <div class="column">
-                    <label for="to" data-ar="إلى" data-en="To">إلى</label>
+                    <label class="center-label" for="to" data-ar="إلى" data-en="To">إلى</label>
                     <input type="text" id="to" name="to" required>
                 </div>
                 <div class="column">
-                    <label for="airline" data-ar="الطيران" data-en="Airline">الطيران</label>
+                    <label class="center-label" for="airline" data-ar="الطيران" data-en="Airline">الطيران</label>
                     <input type="text" id="airline" name="airline" required>
                 </div>
                 <div class="column">
-                    <label for="flight-number" data-ar="رقم الرحلة" data-en="Flight Number">رقم الرحلة</label>
+                    <label class="center-label" for="flight-number" data-ar="رقم الرحلة" data-en="Flight Number">رقم الرحلة</label>
                     <input type="text" id="flight-number" name="flight-number" required>
                 </div>
             </div>
 
             <label for="travel-date" data-ar="تاريخ السفر" data-en="Travel Date">تاريخ السفر</label>
-            <input type="date" id="travel-date" name="travel-date" required>
+            <input type="text" id="travel-date" name="travel-date" pattern="\d{2}/\d{2}/\d{4}" placeholder="dd/mm/yyyy" required>
 
             <label for="departure-time" data-ar="موعد المغادرة" data-en="Departure Time">موعد المغادرة</label>
             <input type="time" id="departure-time" name="departure-time" required>
@@ -254,7 +285,9 @@
             <input type="number" id="total-amount" name="total-amount" required>
 
             <!-- زر الإرسال -->
-            <button type="submit" class="submit-btn" data-ar="إرسال" data-en="Submit">إرسال</button>
+            <div class="submit-container">
+                <button type="submit" class="submit-btn" data-ar="إرسال" data-en="Submit">إرسال</button>
+            </div>
 
         </form>
     </div>

@@ -29,6 +29,7 @@
             display: block;
             margin-bottom: 8px;
             font-weight: bold;
+            text-align: center; /* توسيط النص */
         }
         /* توسيط النص داخل label المحددة */
         .center-label {
@@ -47,6 +48,7 @@
             margin-bottom: 10px;
             color: #333;
             text-align: center; /* توسيط العنوان */
+            font-weight: bold; /* جعل العنوان بخط غامق */
         }
         .submit-btn {
             background-color: #4CAF50;
@@ -121,26 +123,26 @@
         }
 
         /* إعدادات الطباعة */
-       @media print {
-    body {
-        background-image: url('print-background.jpg'); /* رابط صورة الخلفية */
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        margin: 0;
-        padding: 0;
-    }
-    .container {
-        background-color: rgba(255, 255, 255, 0.95); /* خلفية شفافة للنموذج */
-        box-shadow: none; /* إزالة الظل */
-        border: 1px solid #000; /* إضافة إطار حول المحتوى */
-        padding: 40px;
-    }
-    .submit-btn, #print-btn {
-        display: none; /* إخفاء الأزرار عند الطباعة */
-    }
-}
+        @media print {
+            body {
+                background-image: url('print-background.jpg'); /* رابط صورة الخلفية */
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                margin: 0;
+                padding: 0;
+            }
+            .container {
+                background-color: rgba(255, 255, 255, 0.95); /* خلفية شفافة للنموذج */
+                box-shadow: none; /* إزالة الظل */
+                border: 1px solid #000; /* إضافة إطار حول المحتوى */
+                padding: 40px;
+            }
+            .submit-btn, #print-btn {
+                display: none; /* إخفاء الأزرار عند الطباعة */
+            }
+        }
 
         /* توسيط الأقسام */
         .form-section {
@@ -259,13 +261,26 @@
                     </div>
                 </div>
 
-                <label for="booking-date" data-ar="ميعاد الحجز" data-en="Booking Date">ميعاد الحجز</label>
+                <!-- ميعاد الحجز -->
+                <label for="booking-date" class="center-label" data-ar="ميعاد الحجز" data-en="Booking Date">ميعاد الحجز</label>
                 <input type="text" id="booking-date" name="booking-date" pattern="\d{2}/\d{2}/\d{4}" placeholder="dd/mm/yyyy" required>
             </div>
 
             <!-- تفاصيل الرحلة -->
             <div class="form-section">
                 <div class="section-title" data-ar="تفاصيل الرحلة" data-en="Flight Details">تفاصيل الرحلة</div>
+
+                <!-- مرجع الحجز ورقم التذكرة في صف واحد -->
+                <div class="row">
+                    <div class="column">
+                        <label for="booking-reference" class="center-label" data-ar="مرجع الحجز" data-en="Booking Reference">مرجع الحجز</label>
+                        <input type="text" id="booking-reference" name="booking-reference" required>
+                    </div>
+                    <div class="column">
+                        <label for="ticket-number" class="center-label" data-ar="رقم التذكرة" data-en="Ticket Number">رقم التذكرة</label>
+                        <input type="text" id="ticket-number" name="ticket-number" required>
+                    </div>
+                </div>
 
                 <!-- من، إلى، الطيران، رقم الرحلة في صف واحد -->
                 <div class="row">
@@ -360,19 +375,21 @@
                 <input type="number" id="base-price" name="base-price" required>
 
                 <label for="additional-fee" data-ar="رسم إضافي" data-en="Additional Fee">رسم إضافي</label>
-            <input type="number" id="additional-fee" name="additional-fee">
+                <input type="number" id="additional-fee" name="additional-fee">
 
-            <label for="fuel-fee" data-ar="رسوم الوقود / التأمين" data-en="Fuel / Insurance Fee">رسوم الوقود / التأمين</label>
-            <input type="number" id="fuel-fee" name="fuel-fee">
+                <label for="fuel-fee" data-ar="رسوم الوقود / التأمين" data-en="Fuel / Insurance Fee">رسوم الوقود / التأمين</label>
+                <input type="number" id="fuel-fee" name="fuel-fee">
 
-            <label for="service-fee" data-ar="رسوم خدمة الركاب" data-en="Passenger Service Fee">رسوم خدمة الركاب</label>
-            <input type="number" id="service-fee" name="service-fee">
+                <label for="service-fee" data-ar="رسوم خدمة الركاب" data-en="Passenger Service Fee">رسوم خدمة الركاب</label>
+                <input type="number" id="service-fee" name="service-fee">
 
-            <label for="ticket-fee" data-ar="رسوم خدمة التذاكر" data-en="Ticket Service Fee">رسوم خدمة التذاكر</label>
-            <input type="number" id="ticket-fee" name="ticket-fee">
+                <label for="ticket-fee" data-ar="رسوم خدمة التذاكر" data-en="Ticket Service Fee">رسوم خدمة التذاكر</label>
+                <input type="number" id="ticket-fee" name="ticket-fee">
 
-            <label for="total-amount" data-ar="المبلغ الإجمالي" data-en="Total Amount">المبلغ الإجمالي</label>
-            <input type="number" id="total-amount" name="total-amount" required>
+                <label for="total-amount" data-ar="المبلغ الإجمالي" data-en="Total Amount">المبلغ الإجمالي</label>
+                <input type="number" id="total-amount" name="total-amount" required>
+
+            </div>
 
             <!-- زر الإرسال -->
             <div class="submit-container">

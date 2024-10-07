@@ -176,6 +176,30 @@
         function printPage() {
             window.print();
         }
+
+        function sendEmail() {
+            var email = "example@example.com"; // أدخل البريد الإلكتروني هنا
+            var subject = "تفاصيل تذكرة الطيران";
+            var body = `
+            اللقب: ${document.getElementById('prefix').value}\n
+            الاسم الأول: ${document.getElementById('first-name').value}\n
+            الاسم الأوسط: ${document.getElementById('middle-name').value}\n
+            الاسم الأخير: ${document.getElementById('last-name').value}\n
+            رقم الجوال: ${document.getElementById('phone').value}\n
+            البريد الإلكتروني: ${document.getElementById('email').value}\n
+            مرجع الحجز: ${document.getElementById('booking-reference').value}\n
+            رقم التذكرة: ${document.getElementById('ticket-number').value}\n
+            من: ${document.getElementById('from').value}\n
+            إلى: ${document.getElementById('to').value}\n
+            الطيران: ${document.getElementById('airline').value}\n
+            رقم الرحلة: ${document.getElementById('flight-number').value}\n
+            تاريخ السفر: ${document.getElementById('travel-date').value}\n
+            اليوم: ${document.getElementById('day').value}\n
+            موعد المغادرة: ${document.getElementById('departure-time').value}\n
+            موعد الوصول: ${document.getElementById('arrival-time').value}
+            `;
+            window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
     </script>
 </head>
 <body>
@@ -374,7 +398,7 @@
 
             <!-- زر الإرسال -->
             <div class="submit-container">
-                <button type="submit" class="submit-btn" data-ar="إرسال" data-en="Submit">إرسال</button>
+                <button type="button" class="submit-btn" data-ar="إرسال" data-en="Submit" onclick="sendEmail()">إرسال</button>
             </div>
 
         </form>

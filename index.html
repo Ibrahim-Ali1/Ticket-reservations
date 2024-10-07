@@ -116,6 +116,23 @@
             justify-content: space-between; /* توزيع الأعمدة بالتساوي */
             gap: 10px; /* إضافة فراغ بين الأعمدة */
         }
+
+        /* إعدادات الطباعة */
+        @media print {
+            body {
+                background: none; /* إزالة الخلفية */
+                margin: 0; /* إزالة الهوامش */
+                padding: 0; /* إزالة padding */
+            }
+            .container {
+                box-shadow: none; /* إزالة الظل */
+                border-radius: 0; /* إزالة الحدود المنحنية */
+                width: 100%; /* عرض النموذج بالكامل */
+            }
+            .submit-btn {
+                display: none; /* إخفاء زر الإرسال عند الطباعة */
+            }
+        }
     </style>
     <script>
         function switchLanguage(language) {

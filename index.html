@@ -398,11 +398,34 @@
 
             <!-- زر الإرسال -->
             <div class="submit-container">
-                <button type="button" class="submit-btn" data-ar="إرسال" data-en="Submit" onclick="sendEmail()">إرسال</button>
+                <button type="button" class="submit-btn" onclick="generatePDF()">إرسال كـ PDF</button>
             </div>
-
         </form>
     </div>
 
+    <script>
+        function generatePDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // إضافة محتوى إلى PDF
+            doc.text("تذكرة طيران", 10, 10);
+            doc.text(`اللقب: ${document.getElementById('prefix').value}`, 10, 20);
+            doc.text(`الاسم الأول: ${document.getElementById('first-name').value}`, 10, 30);
+            doc.text(`الاسم الأوسط: ${document.getElementById('middle-name').value}`, 10, 40);
+            doc.text(`الاسم الأخير: ${document.getElementById('last-name').value}`, 10, 50);
+            doc.text(`رقم الجوال: ${document.getElementById('phone').value}`, 10, 60);
+            doc.text(`البريد الإلكتروني: ${document.getElementById('email').value}`, 10, 70);
+            doc.text(`مرجع الحجز: ${document.getElementById('booking-reference').value}`, 10, 80);
+            doc.text(`رقم التذكرة: ${document.getElementById('ticket-number').value}`, 10, 90);
+            doc.text(`من: ${document.getElementById('from').value}`, 10, 100);
+            doc.text(`إلى: ${document.getElementById('to').value}`, 10, 110);
+            doc.text(`تاريخ السفر: ${document.getElementById('travel-date').value}`, 10, 120);
+            doc.text(`اليوم: ${document.getElementById('day').value}`, 10, 130);
+
+            // حفظ PDF
+            doc.save("flight-ticket.pdf");
+        }
+    </script>
 </body>
 </html>

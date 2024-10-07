@@ -131,6 +131,30 @@
                     document.body.style.textAlign = 'left';
                 }
             });
+            
+            // تحديث خيارات اليوم حسب اللغة
+            const daySelect = document.getElementById("day");
+            if (language === 'ar') {
+                daySelect.innerHTML = `
+                    <option value="Saturday">السبت</option>
+                    <option value="Sunday">الأحد</option>
+                    <option value="Monday">الاثنين</option>
+                    <option value="Tuesday">الثلاثاء</option>
+                    <option value="Wednesday">الأربعاء</option>
+                    <option value="Thursday">الخميس</option>
+                    <option value="Friday">الجمعة</option>
+                `;
+            } else {
+                daySelect.innerHTML = `
+                    <option value="Saturday">Saturday</option>
+                    <option value="Sunday">Sunday</option>
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                `;
+            }
         }
     </script>
 </head>
@@ -185,6 +209,17 @@
                 </div>
             </div>
 
+            <div class="row">
+                <div class="column">
+                    <label for="phone" data-ar="رقم الجوال" data-en="Phone Number">رقم الجوال</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="column">
+                    <label for="email" data-ar="البريد الإلكتروني" data-en="Email">البريد الإلكتروني</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+            </div>
+
             <label for="booking-date" data-ar="ميعاد الحجز" data-en="Booking Date">ميعاد الحجز</label>
             <input type="text" id="booking-date" name="booking-date" pattern="\d{2}/\d{2}/\d{4}" placeholder="dd/mm/yyyy" required>
 
@@ -217,7 +252,7 @@
                     <input type="text" id="travel-date" name="travel-date" pattern="\d{2}/\d{2}/\d{4}" placeholder="dd/mm/yyyy" required>
                 </div>
                 <div class="column">
-                    <label for="day" class="center-label" data-ar="اليوم" data-en="Day">Day</label> <!-- تحديث هنا -->
+                    <label for="day" class="center-label" data-ar="اليوم" data-en="Day">Day</label>
                     <select id="day" name="day" required>
                         <option value="Saturday">Saturday</option>
                         <option value="Sunday">Sunday</option>

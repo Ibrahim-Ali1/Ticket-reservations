@@ -20,7 +20,8 @@
             margin: auto;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: center; /* تعديل لتوسيط المحتوى */
+            align-items: center; /* توسيط المحتوى أفقيًا */
             min-height: 100vh; /* لملء الصفحة بالكامل */
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* إضافة ظل للخلفية */
         }
@@ -45,7 +46,7 @@
             margin-top: 20px;
             margin-bottom: 10px;
             color: #333;
-            text-align: left; /* توسيط العنوان */
+            text-align: center; /* توسيط العنوان */
         }
         .submit-btn {
             background-color: #4CAF50;
@@ -73,7 +74,9 @@
             color: #333;
         }
         .language-switcher {
-            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 20px;
         }
         .language-switcher button {
@@ -120,19 +123,33 @@
         /* إعدادات الطباعة */
         @media print {
             body {
-                background: none; /* إزالة الخلفية */
-                margin: 0; /* إزالة الهوامش */
-                padding: 0; /* إزالة padding */
+                background: none; /* إزالة الخلفية للشاشة */
+                margin: 0;
+                padding: 0;
+                background-image: url('print-background.jpg'); /* خلفية مخصصة للطباعة */
+                background-size: cover;
+                background-position: center;
             }
             .container {
+                background-color: rgba(255, 255, 255, 0.95); /* خلفية بيضاء شفافة للطباعة */
                 box-shadow: none; /* إزالة الظل */
-                border-radius: 0; /* إزالة الحدود المنحنية */
-                width: 100%; /* عرض النموذج بالكامل */
+                border: 1px solid #000; /* إضافة إطار حول المحتوى */
+                padding: 40px;
             }
             .submit-btn {
                 display: none; /* إخفاء زر الإرسال عند الطباعة */
             }
+            #print-btn {
+                display: none; /* إخفاء زر الطباعة عند الطباعة */
+            }
         }
+
+        /* توسيط الأقسام */
+        .form-section {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
     </style>
     <script>
         function switchLanguage(language) {
@@ -142,10 +159,12 @@
                     element.textContent = element.getAttribute('data-ar');
                     document.body.style.direction = 'rtl';
                     document.body.style.textAlign = 'right';
+                    document.getElementById('print-btn').textContent = 'طباعة';
                 } else {
                     element.textContent = element.getAttribute('data-en');
                     document.body.style.direction = 'ltr';
                     document.body.style.textAlign = 'left';
+                    document.getElementById('print-btn').textContent = 'Print';
                 }
             });
             
@@ -173,6 +192,10 @@
                 `;
             }
         }
+
+        function printPage() {
+            window.print();
+        }
     </script>
 </head>
 <body>
@@ -181,8 +204,12 @@
 
         <!-- تبديل اللغة -->
         <div class="language-switcher">
-            <button onclick="switchLanguage('ar')">العربية</button>
-            <button onclick="switchLanguage('en')">English</button>
+            <div>
+                <button onclick="switchLanguage('ar')">العربية</button>
+                <button onclick="switchLanguage('en')">English</button>
+            </div>
+            <!-- زر الطباعة -->
+            <button id="print-btn" onclick="printPage()">طباعة</button>
         </div>
 
         <!-- شعار الشركة -->
@@ -194,175 +221,147 @@
         <h2 data-ar="شراء تذكرة طيران" data-en="Flight Ticket Purchase">شراء تذكرة طيران</h2>
 
         <form>
-
             <!-- بيانات الراكب -->
-            <div class="section-title" data-ar="بيانات الراكب" data-en="Passenger Information">بيانات الراكب</div>
+            <div class="form-section">
+                <div class="section-title" data-ar="بيانات الراكب" data-en="Passenger Information">بيانات الراكب</div>
 
-            <!-- العنوان فوق حقول الأسماء -->
-            <div class="names-header" data-ar="الاسم الكامل" data-en="Full Name">الاسم الكامل</div>
+                <!-- اللقب، الاسم الأول، الأوسط، الأخير في صف واحد -->
+                <div class="row">
+                    <div class="column">
+                        <label class="center-label" for="prefix" data-ar="اللقب" data-en="Title">اللقب</label>
+                        <select id="prefix" name="prefix" required>
+                            <option value="Mr">Mr</option>
+                            <option value="Mrs">Mrs</option>
+                            <option value="Miss">Miss</option>
+                            <option value="Mstr">Mstr</option>
+                        </select>
+                    </div>
+                    <div class="column">
+                        <label class="center-label" for="first-name" data-ar="الاسم الأول" data-en="First Name">الاسم الأول</label>
+                        <input type="text" id="first-name" name="first-name" required>
+                    </div>
+                    <div class="column">
+                        <label class="center-label" for="middle-name" data-ar="الاسم الأوسط" data-en="Middle Name">الاسم الأوسط</label>
+                        <input type="text" id="middle-name" name="middle-name">
+                    </div>
+                    <div class="column">
+                        <label class="center-label" for="last-name" data-ar="الاسم الأخير" data-en="Last Name">الاسم الأخير</label>
+                        <input type="text" id="last-name" name="last-name" required>
+                    </div>
+                </div>
 
-            <!-- اللقب، الاسم الأول، الأوسط، الأخير في صف واحد -->
-            <div class="row">
-                <div class="column">
-                    <label class="center-label" for="prefix" data-ar="اللقب" data-en="Title">اللقب</label>
-                    <select id="prefix" name="prefix" required>
-                        <option value="Mr">Mr</option>
-                        <option value="Mrs">Mrs</option>
-                        <option value="Miss">Miss</option>
-                        <option value="Mstr">Mstr</option>
-                    </select>
+                <div class="row">
+                    <div class="column">
+                        <label for="phone" data-ar="رقم الجوال" data-en="Phone Number">رقم الجوال</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="column">
+                        <label for="email" data-ar="البريد الإلكتروني" data-en="Email">البريد الإلكتروني</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
                 </div>
-                <div class="column">
-                    <label class="center-label" for="first-name" data-ar="الاسم الأول" data-en="First Name">الاسم الأول</label>
-                    <input type="text" id="first-name" name="first-name" required>
-                </div>
-                <div class="column">
-                    <label class="center-label" for="middle-name" data-ar="الاسم الأوسط" data-en="Middle Name">الاسم الأوسط</label>
-                    <input type="text" id="middle-name" name="middle-name">
-                </div>
-                <div class="column">
-                    <label class="center-label" for="last-name" data-ar="الاسم الأخير" data-en="Last Name">الاسم الأخير</label>
-                    <input type="text" id="last-name" name="last-name" required>
-                </div>
+
+                <label for="booking-date" data-ar="ميعاد الحجز" data-en="Booking Date">ميعاد الحجز</label>
+                <input type="text" id="booking-date" name="booking-date" pattern="\d{2}/\d{2}/\d{4}" placeholder="dd/mm/yyyy" required>
             </div>
-
-            <div class="row">
-                <div class="column">
-                    <label for="phone" data-ar="رقم الجوال" data-en="Phone Number">رقم الجوال</label>
-                    <input type="tel" id="phone" name="phone" required>
-                </div>
-                <div class="column">
-                    <label for="email" data-ar="البريد الإلكتروني" data-en="Email">البريد الإلكتروني</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-            </div>
-
-            <label for="booking-date" data-ar="ميعاد الحجز" data-en="Booking Date">ميعاد الحجز</label>
-            <input type="text" id="booking-date" name="booking-date" pattern="\d{2}/\d{2}/\d{4}" placeholder="dd/mm/yyyy" required>
 
             <!-- تفاصيل الرحلة -->
-            <div class="section-title" data-ar="تفاصيل الرحلة" data-en="Flight Details">تفاصيل الرحلة</div>
+            <div class="form-section">
+                <div class="section-title" data-ar="تفاصيل الرحلة" data-en="Flight Details">تفاصيل الرحلة</div>
 
-            <!-- من، إلى، الطيران، رقم الرحلة في صف واحد -->
-            <div class="row">
-                <div class="column">
-                    <label class="center-label" for="from" data-ar="من" data-en="From">من</label>
-                    <input type="text" id="from" name="from" required>
+                <!-- من، إلى، الطيران، رقم الرحلة في صف واحد -->
+                <div class="row">
+                    <div class="column">
+                        <label class="center-label" for="from" data-ar="من" data-en="From">من</label>
+                        <input type="text" id="from" name="from" required>
+                    </div>
+                    <div class="column">
+                        <label class="center-label" for="to" data-ar="إلى" data-en="To">إلى</label>
+                        <input type="text" id="to" name="to" required>
+                    </div>
+                    <div class="column">
+                        <label class="center-label" for="airline" data-ar="الطيران" data-en="Airline">الطيران</label>
+                        <input type="text" id="airline" name="airline" required>
+                    </div>
+                    <div class="column">
+                        <label class="center-label" for="flight-number" data-ar="رقم الرحلة" data-en="Flight Number">رقم الرحلة</label>
+                        <input type="text" id="flight-number" name="flight-number" required>
+                    </div>
                 </div>
-                <div class="column">
-                    <label class="center-label" for="to" data-ar="إلى" data-en="To">إلى</label>
-                    <input type="text" id="to" name="to" required>
+
+                <div class="row">
+                    <div class="column">
+                        <label for="travel-date" data-ar="تاريخ السفر" data-en="Travel Date">تاريخ السفر</label>
+                        <input type="text" id="travel-date" name="travel-date" pattern="\d{2}/\d{2}/\d{4}" placeholder="dd/mm/yyyy" required>
+                    </div>
+                    <div class="column">
+                        <label for="day" class="center-label" data-ar="اليوم" data-en="Day">Day</label>
+                        <select id="day" name="day" required>
+                            <option value="Saturday">Saturday</option>
+                            <option value="Sunday">Sunday</option>
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="column">
-                    <label class="center-label" for="airline" data-ar="الطيران" data-en="Airline">الطيران</label>
-                    <input type="text" id="airline" name="airline" required>
-                </div>
-                <div class="column">
-                    <label class="center-label" for="flight-number" data-ar="رقم الرحلة" data-en="Flight Number">رقم الرحلة</label>
-                    <input type="text" id="flight-number" name="flight-number" required>
+
+                <div class="row">
+                    <div class="column">
+                        <label for="departure-time" data-ar="موعد المغادرة" data-en="Departure Time">موعد المغادرة</label>
+                        <input type="time" id="departure-time" name="departure-time" required>
+                    </div>
+                    <div class="column">
+                        <label for="arrival-time" data-ar="موعد الوصول" data-en="Arrival Time">موعد الوصول</label>
+                        <input type="time" id="arrival-time" name="arrival-time" required>
+                    </div>
                 </div>
             </div>
 
-            <div class="row">
-                <div class="column">
-                    <label for="travel-date" data-ar="تاريخ السفر" data-en="Travel Date">تاريخ السفر</label>
-                    <input type="text" id="travel-date" name="travel-date" pattern="\d{2}/\d{2}/\d{4}" placeholder="dd/mm/yyyy" required>
-                </div>
-                <div class="column">
-                    <label for="day" class="center-label" data-ar="اليوم" data-en="Day">Day</label>
-                    <select id="day" name="day" required>
-                        <option value="Saturday">Saturday</option>
-                        <option value="Sunday">Sunday</option>
-                        <option value="Monday">Monday</option>
-                        <option value="Tuesday">Tuesday</option>
-                        <option value="Wednesday">Wednesday</option>
-                        <option value="Thursday">Thursday</option>
-                        <option value="Friday">Friday</option>
-                    </select>
-                </div>
-            </div>
+            <!-- بيانات الأمتعة -->
+            <div class="form-section">
+                <div class="section-title" data-ar="الأمتعة" data-en="Baggage">الأمتعة</div>
 
-            <div class="row">
-                <div class="column">
-                    <label for="departure-time" data-ar="موعد المغادرة" data-en="Departure Time">موعد المغادرة</label>
-                    <input type="time" id="departure-time" name="departure-time" required>
-                </div>
-                <div class="column">
-                    <label for="arrival-time" data-ar="موعد الوصول" data-en="Arrival Time">موعد الوصول</label>
-                    <input type="time" id="arrival-time" name="arrival-time" required>
-                </div>
-            </div>
-
-            <!-- خانة مرجع الحجز ورقم التذكرة -->
-            <div class="row">
-                <div class="column">
-                    <label for="booking-reference" data-ar="مرجع الحجز" data-en="Booking Reference">مرجع الحجز</label>
-                    <input type="text" id="booking-reference" name="booking-reference" required>
-                </div>
-                <div class="column">
-                    <label for="ticket-number" data-ar="رقم التذكرة" data-en="Ticket Number">رقم التذكرة</label>
-                    <input type="text" id="ticket-number" name="ticket-number" required>
-                </div>
-            </div>
-
-            <!-- بيانات الأمتعة في سطر واحد مع التوسيع -->
-            <div class="section-title" data-ar="الأمتعة" data-en="Baggage">الأمتعة</div>
-
-            <div class="row">
-                <div class="column">
-                    <label for="baggage-count" data-ar="عدد الأمتعة" data-en="Number of Baggage">عدد الأمتعة</label>
-                    <select id="baggage-count" name="baggage-count">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                </div>
-                <div class="column">
-                    <label for="baggage-weight" data-ar="وزن الأمتعة" data-en="Baggage Weight">وزن الأمتعة</label>
-                    <select id="baggage-weight" name="baggage-weight">
-                        <option value="10">10 KG</option>
-                        <option value="15">15 KG</option>
-                        <option value="23">23 KG</option>
-                        <option value="30">30 KG</option>
-                    </select>
-                </div>
-                <div class="column">
-                    <label for="extra-baggage" data-ar="شراء وزن أمتعة إضافي" data-en="Extra Baggage Purchase">شراء وزن أمتعة إضافي</label>
-                    <select id="extra-baggage" name="extra-baggage">
-                        <option value="no" data-ar="لا" data-en="No">لا</option>
-                        <option value="yes" data-ar="نعم" data-en="Yes">نعم</option>
-                    </select>
-                </div>
-            </div>
-
-            <!-- معلومات المقعد -->
-            <div class="section-title" data-ar="معلومات المقعد" data-en="Seat Information">معلومات المقعد</div>
-
-            <div class="row">
-                <div class="column">
-                    <label for="seat-class" data-ar="درجة المقعد" data-en="Seat Class">درجة المقعد</label>
-                    <select id="seat-class" name="seat-class" required>
-                        <option value="" data-ar="الرجاء التحديد" data-en="Please Select">الرجاء التحديد</option>
-                        <option value="economy" data-ar="اقتصادي" data-en="Economy">اقتصادي</option>
-                        <option value="business" data-ar="رجال الأعمال" data-en="Business">رجال الأعمال</option>
-                        <option value="first-class" data-ar="الدرجة الأولى" data-en="First Class">الدرجة الأولى</option>
-                    </select>
-                </div>
-                <div class="column">
-                    <label for="seat-number" data-ar="رقم المقعد" data-en="Seat Number">رقم المقعد</label>
-                    <input type="text" id="seat-number" name="seat-number">
+                <div class="row">
+                    <div class="column">
+                        <label for="baggage-count" data-ar="عدد الأمتعة" data-en="Number of Baggage">عدد الأمتعة</label>
+                        <select id="baggage-count" name="baggage-count">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    <div class="column">
+                        <label for="baggage-weight" data-ar="وزن الأمتعة" data-en="Baggage Weight">وزن الأمتعة</label>
+                        <select id="baggage-weight" name="baggage-weight">
+                            <option value="10">10 KG</option>
+                            <option value="15">15 KG</option>
+                            <option value="23">23 KG</option>
+                            <option value="30">30 KG</option>
+                        </select>
+                    </div>
+                    <div class="column">
+                        <label for="extra-baggage" data-ar="شراء وزن أمتعة إضافي" data-en="Extra Baggage Purchase">شراء وزن أمتعة إضافي</label>
+                        <select id="extra-baggage" name="extra-baggage">
+                            <option value="no" data-ar="لا" data-en="No">لا</option>
+                            <option value="yes" data-ar="نعم" data-en="Yes">نعم</option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
             <!-- تفاصيل السعر -->
-            <div class="section-title" data-ar="تفاصيل السعر" data-en="Price Details">تفاصيل السعر</div>
+            <div class="form-section">
+                <div class="section-title" data-ar="تفاصيل السعر" data-en="Price Details">تفاصيل السعر</div>
 
-            <label for="base-price" data-ar="السعر الأساسي" data-en="Base Fare">السعر الأساسي</label>
-            <input type="number" id="base-price" name="base-price" required>
+                <label for="base-price" data-ar="السعر الأساسي" data-en="Base Fare">السعر الأساسي</label>
+                <input type="number" id="base-price" name="base-price" required>
 
-            <label for="additional-fee" data-ar="رسم إضافي" data-en="Additional Fee">رسم إضافي</label>
+                <label for="additional-fee" data-ar="رسم إضافي" data-en="Additional Fee">رسم إضافي</label>
             <input type="number" id="additional-fee" name="additional-fee">
 
             <label for="fuel-fee" data-ar="رسوم الوقود / التأمين" data-en="Fuel / Insurance Fee">رسوم الوقود / التأمين</label>

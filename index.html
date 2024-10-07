@@ -121,28 +121,26 @@
         }
 
         /* إعدادات الطباعة */
-        @media print {
-            body {
-                background: none; /* إزالة الخلفية للشاشة */
-                margin: 0;
-                padding: 0;
-                background-image: url('print-background.jpg'); /* خلفية مخصصة للطباعة */
-                background-size: cover;
-                background-position: center;
-            }
-            .container {
-                background-color: rgba(255, 255, 255, 0.95); /* خلفية بيضاء شفافة للطباعة */
-                box-shadow: none; /* إزالة الظل */
-                border: 1px solid #000; /* إضافة إطار حول المحتوى */
-                padding: 40px;
-            }
-            .submit-btn {
-                display: none; /* إخفاء زر الإرسال عند الطباعة */
-            }
-            #print-btn {
-                display: none; /* إخفاء زر الطباعة عند الطباعة */
-            }
-        }
+       @media print {
+    body {
+        background-image: url('print-background.jpg'); /* رابط صورة الخلفية */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        background-color: rgba(255, 255, 255, 0.95); /* خلفية شفافة للنموذج */
+        box-shadow: none; /* إزالة الظل */
+        border: 1px solid #000; /* إضافة إطار حول المحتوى */
+        padding: 40px;
+    }
+    .submit-btn, #print-btn {
+        display: none; /* إخفاء الأزرار عند الطباعة */
+    }
+}
 
         /* توسيط الأقسام */
         .form-section {
